@@ -12,6 +12,26 @@ class FolderPathTestCase(unittest.TestCase):
         expected = "tests/path_test/level1/test_path_level1/"
         self.assertIn(expected, res)
 
+    def test_folder_find_above_part2(self):
+        res = mu.find_folder_path("/test_path_level1")
+        expected = "tests/path_test/level1/test_path_level1/"
+        self.assertIn(expected, res)
+
+    def test_folder_find_above_part3(self):
+        res = mu.find_folder_path("test_path_level1/")
+        expected = "tests/path_test/level1/test_path_level1/"
+        self.assertIn(expected, res)
+
+    def test_folder_find_above_part4(self):
+        res = mu.find_folder_path("/test_path_level1/")
+        expected = "tests/path_test/level1/test_path_level1/"
+        self.assertIn(expected, res)
+
+    def test_folder_find_above_part5(self):
+        res = mu.find_folder_path("level1/test_path_level1/")
+        expected = "tests/path_test/level1/test_path_level1/"
+        self.assertIn(expected, res)
+
     def test_folder_find_locally(self):
         res = mu.find_folder_path("test_path_level2")
         expected = "tests/path_test/level1/level2/test_path_level2/"

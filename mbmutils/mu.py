@@ -12,21 +12,21 @@ from typing import Optional
 def _find(pathname: str, match_func=os.path.isfile) -> Optional[str]:
     cwd_parts = list(Path(os.getcwd()).parts)
     while len(cwd_parts) > 0:
-        search_dir = "/".join(cwd_parts).replace('//', '/')
-        candidate = os.path.join(search_dir, pathname)
+        search_dir_str = "/".join(cwd_parts).replace('//', '/')
+        search_dir = Path(search_dir_str)
+        candidate = search_dir / pathname.strip("/")
         if match_func(candidate):
-            return candidate
-
+            return candidate.as_posix()
         cwd_parts.pop()
     return None
 
 
-def find_file_path(path: str):
-    return _find(path, match_func=os.path.isfile)
+def find_file_path(partial_path: str):
+    return _find(partial_path, match_func=os.path.isfile)
 
 
-def find_folder_path(path: str):
-    final_path = _find(path, match_func=os.path.isdir)
+def find_folder_path(partial_path: str):
+    final_path = _find(partial_path, match_func=os.path.isdir)
     if final_path is None:
         return None
     if final_path[-1] != '/':
