@@ -1,6 +1,9 @@
 # mbmutils
 
-Simpmle common utilities.
+Simple common utilities.
+
+[Pypi page](https://pypi.org/project/mbmutils/)
+[GitHub page](https://github.com/bladnman/mbmutils)
 
 ## Installation
 
@@ -76,7 +79,7 @@ mu.find_folder_path('data')
 
 # again, assuming current folder is
 # /path/to/python/code
-mu.find_folder_path('my_file.json')
+mu.find_file_path('my_file.json')
 # will return the first valid:
 #   -> path/to/python/code/my_file.json
 #   -> path/to/python/my_file.json
